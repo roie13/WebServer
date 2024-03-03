@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>נקודות סופיות</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <br />
+    <br />
+    <button style="font-size: 20px;" onclick="handleclick5()">See final points</button>
+    <div class="points">
+        <a>orit miler - </a>
+        <div></div>
+        <br />
+        <br />
+        <a>hadar bocher - </a>
+        <div></div>
+        <br />
+        <br />
+        <a>liora bogomolnik - </a>
+        <div></div>
+    </div>
+
+    <script>
+        let div2 = document.getElementsByTagName("div")[1];
+        let div3 = document.getElementsByTagName("div")[2];
+        let div4 = document.getElementsByTagName("div")[3];
+
+        async function handleClick5() {
+
+            await fetch("/addPointsVote",
+                {
+                    method: "POST",
+                    body: 0
+                }
+            );
+
+            GetVotes();
+        
+
+            let response = await fetch("/getPointsVotes");
+            let votes = await response.json();
+
+            console.log(votes);
+        }
+    </script>
+</body>
+
+
+</html>
