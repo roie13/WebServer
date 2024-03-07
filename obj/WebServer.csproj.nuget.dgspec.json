@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\roeim\\OneDrive\\שולחן העבודה\\WebServer\\WebServer.csproj": {}
+    "C:\\Users\\roeim\\projects\\WebServer\\WebServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\roeim\\OneDrive\\שולחן העבודה\\WebServer\\WebServer.csproj": {
+    "C:\\Users\\roeim\\projects\\WebServer\\WebServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\roeim\\OneDrive\\שולחן העבודה\\WebServer\\WebServer.csproj",
+        "projectUniqueName": "C:\\Users\\roeim\\projects\\WebServer\\WebServer.csproj",
         "projectName": "WebServer",
-        "projectPath": "C:\\Users\\roeim\\OneDrive\\שולחן העבודה\\WebServer\\WebServer.csproj",
+        "projectPath": "C:\\Users\\roeim\\projects\\WebServer\\WebServer.csproj",
         "packagesPath": "C:\\Users\\roeim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\roeim\\OneDrive\\שולחן העבודה\\WebServer\\obj\\",
+        "outputPath": "C:\\Users\\roeim\\projects\\WebServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\roeim\\AppData\\Roaming\\NuGet\\NuGet.Config"
