@@ -55,27 +55,27 @@ class Program
         byte[] votesBytes = Encoding.UTF8.GetBytes(votesJson);
         response.OutputStream.Write(votesBytes);
       }
-          else if (absPath == "/addPointsVote")
-          {
-            int voteIndex = int.Parse(GetBody(request));
-            votes[voteIndex]++;
-            Console.WriteLine(votes[voteIndex]);
-          }
-          else if (absPath == "/getPointsVotes")
-          {
-            string votesJson = JsonSerializer.Serialize(votes);
-            byte[] votesBytes = Encoding.UTF8.GetBytes(votesJson);
-            response.OutputStream.Write(votesBytes);
-          }
-      
-    
-      response.Close();
-  }
-  }
-      public static string GetBody(HttpListenerRequest request)
+      else if (absPath == "/addPointsVote")
       {
-        return new StreamReader(request.InputStream).ReadToEnd();
+        int voteIndex = int.Parse(GetBody(request));
+        votes[voteIndex]++;
+        Console.WriteLine(votes[voteIndex]);
       }
+      else if (absPath == "/getPointsVotes")
+      {
+        string votesJson = JsonSerializer.Serialize(votes);
+        byte[] votesBytes = Encoding.UTF8.GetBytes(votesJson);
+        response.OutputStream.Write(votesBytes);
+      }
+
+
+      response.Close();
     }
-  
+  }
+  public static string GetBody(HttpListenerRequest request)
+  {
+    return new StreamReader(request.InputStream).ReadToEnd();
+  }
+}
+
 
