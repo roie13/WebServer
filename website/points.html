@@ -5,47 +5,49 @@
 <head>
     <title>נקודות סופיות</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.jpg">
 </head>
 
 
 <body>
     <br />
     <br />
-    <button style="font-size: 20px;" onclick="handleclick5()">See final points</button>
+    <button style="font-size: 20px;" onclick="handleClick5()">See final points</button>
+    <br />
+    <a href="index.html" style="font-size: 30px;">back</a>
     <div class="points">
-        <a>orit miler - </a>
-        <div></div>
+        <span>orit miler - </span><span></span>
         <br />
         <br />
-        <a>hadar bocher - </a>
-        <div></div>
+        <span>hadar bocher - </span><span></span>
         <br />
         <br />
-        <a>liora bogomolnik - </a>
+        <span>liora bogomolnik - </span><span></span>
         <div></div>
     </div>
+    <br />
+    <br />
 
     <script>
-        let div2 = document.getElementsByTagName("div")[1];
-        let div3 = document.getElementsByTagName("div")[2];
-        let div4 = document.getElementsByTagName("div")[3];
+        let div2 = document.getElementsByTagName("span")[1];
+        let div3 = document.getElementsByTagName("span")[3];
+        let div4 = document.getElementsByTagName("span")[5];
+
 
         async function handleClick5() {
 
-            await fetch("/addPointsVote",
-                {
-                    method: "POST",
-                    body: 0
-                }
-            );
-
-            GetVotes();
+            
         
 
             let response = await fetch("/getPointsVotes");
             let votes = await response.json();
 
             console.log(votes);
+
+            div2.innerText = votes[2];
+            div3.innerText = votes[1];
+            div4.innerText = votes[0];
+
         }
     </script>
 </body>
