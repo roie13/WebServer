@@ -68,7 +68,13 @@ button {
     transform: translate(-50%, -50%);
     padding: 10px;
     font-size: 60px;
+}
 
-
+.New {
+    direction: ltr;
+    position: absolute;
+    top: 60%;
+    left: 40%;
+    text-align: left;
 
 }
