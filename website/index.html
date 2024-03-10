@@ -6,7 +6,6 @@
   <title>סקר מורים</title>
   <link rel="icon" href="icon.jpg">
   <link rel="stylesheet" href="style.css">
-
 </head>
 
 
@@ -15,41 +14,32 @@
   <a href="points.html" style="font-size: 30px;">Final points</a>
   <br />
   <br />
-  <!-- דיב 0 -->
+
   <div class="container">
-    <!-- דיב 1 -->
+
     <div class="teacher">
       <a href="orit.html">
         <img src="../orit.jpg" width="150" height="150" />
       </a>
-      <!-- דיב 2 ו3 -->
-      <div class="ltr">orit - <div> </div>
+      <div class="ltr">orit - <div class="score"> </div>
       </div>
       <button onclick="handleClick1()">vote</button>
-
     </div>
-    <!-- דיב 4 -->
-    <div class="padding"></div>
-    <!-- דיב 5 -->
+
     <div class="teacher">
       <a href="hadar.html">
         <img src="../hadar.jpg" width="150" height="150" />
       </a>
-      <!-- דיב 6 ו7 -->
-      <div class="ltr">hadar - <div> </div>
+      <div class="ltr">hadar - <div class="score"> </div>
       </div>
       <button onclick="handleClick2()">vote</button>
-
     </div>
-    <!-- דיב 8 -->
-    <div class="padding"></div>
-    <!-- דיב 9 -->
+
     <div class="teacher">
       <a href="liora.html">
         <img src="../liora.jpg" width="150" height="150" />
       </a>
-      <!-- דיב 10 ו11 -->
-      <div class="ltr">liora - <div> </div>
+      <div class="ltr">liora - <div class="score"> </div>
       </div>
       <button onclick="handleClick3()">vote</button>
     </div>
@@ -58,109 +48,25 @@
 
   <button style="font-size: 25px; background-color: darkcyan; color: black;" onclick="handleClick4()">finish</button>
   <br />
-  <!-- דיב 12 -->
   <div class="finish"></div>
   <br />
-  <!-- דיב 13 -->
-  <div></div>
-  <!-- דיב 14 -->
   <div class="img1">
     <img src="" />
   </div>
-  <!-- דיב 15 -->
   <div class="New">
     <h3>New teacher</h3>
-    Name: <input type="text">
+    Name: <input type="text" style="direction: ltr;">
     <br />
     <br />
-    Image: <input type="text">
+    Image: <input type="text" style="direction: ltr;">
     <br />
     <br />
-    Description: <input type="text" style="height: 30px; width: 350px;">
+    Description: <input type="text" style="height: 30px; width: 350px; direction: ltr;">
     <br />
     <br />
-    <button style="position: absolute; left: 40%;" onclick="">Add</button>
+    <button style="position: absolute; left: 40%;" onclick="createTeacher()">Add</button>
   </div>
-  <script>
-    let div0 = document.getElementsByTagName("div")[0];
-    let div3 = document.getElementsByTagName("div")[3];
-    let div7 = document.getElementsByTagName("div")[7];
-    let div11 = document.getElementsByTagName("div")[11];
-    let div12 = document.getElementsByTagName("div")[12];
-    let img = document.getElementsByTagName("img")[3];
-    let div15 = document.getElementsByTagName("div")[15];
-
-
-    async function handleClick1() {
-      await fetch("/addVote",
-        {
-          method: "POST",
-          body: 2
-        }
-      );
-
-      GetVotes();
-    }
-    async function handleClick2() {
-      await fetch("/addVote",
-        {
-          method: "POST",
-          body: 1
-        }
-      );
-
-      GetVotes();
-    }
-    async function handleClick3() {
-
-      await fetch("/addVote",
-        {
-          method: "POST",
-          body: 0
-        }
-      );
-
-      GetVotes();
-    }
-
-    async function handleClick4() {
-      let response = await fetch("/getVotes");
-      let votes = await response.json();
-      div3.innerText = votes[2];
-      div7.innerText = votes[1];
-      div11.innerText = votes[0];
-
-
-      if (div3.innerText > div7.innerText && div3.innerText > div11.innerText) {
-        div12.innerText = "!Orit Miller the most beloved teacher"
-        img.src = "../oritketer.jpg"; img.width = "700";
-        div0.innerText = "";
-        div15.innerText = "";
-
-      }
-      if (div7.innerText > div3.innerText && div7.innerText > div11.innerText) {
-        div12.innerText = "!Hadar bocher the most beloved teacher"
-        img.src = "../hadarketer.jpg"; img.width = "700";
-        div0.innerText = "";
-        div15.innerText = "";
-      }
-      if (div11.innerText > div3.innerText && div11.innerText > div7.innerText) {
-        div12.innerText = "!Liora bogomolnik the most beloved teacher"
-        img.src = "../lioraketer.jpg"; img.width = "700";
-        div0.innerText = "";
-        div15.innerText = "";
-      }
-    }
-
-    async function GetVotes() {
-      let response = await fetch("/getVotes");
-      let votes = await response.json();
-
-      console.log(votes);
-    }
-
-    GetVotes();
-  </script>
+  <script src="script.js"></script>
 </body>
 
 
