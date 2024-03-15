@@ -13,9 +13,10 @@ class Program
   {
     int[] votes = [0, 0, 0];
     Dictionary<string, Teacher> teachers = new Dictionary<string, Teacher>();
-    teachers.Add("liora", new Teacher("ליאורה בוגומולניק", "https://i.imgur.com/w5y3Anu.jpeg", "ליאורה מורה שמלדמת מתמטיקה ברמה גבוהה לתלמידי התיכון. היא מורה מאוד מאוד קשוחה באופי ובעלת חדות מטרה ללימודים ופחות צחוקים. ליאורה שונה בשיטות הלימוד שלה משאר המורים אבל השיטות שלה מובילות לאחוז ההצטיינות הגבוה ביותר של תלמידים.", votes[0]));
-    teachers.Add("hadar", new Teacher("הדר בוצר", "https://i.imgur.com/HOvwHhQ.jpeg", "הדר מורה אהובה על כולם. מלמדת את המקצוע היסטוריה. שיטת הלימוד שלה היא מאוד כיפית שמחה ואנרגטית בשונה ממורות אחרות. הדר מאמינה ביחס מורה-תלמיד שאם התלמידים מכבדים אותה היא תחזיר בחזרה ואפילו כפול. הדר מבינה את הקושי של התלמידים בלמידה ממושכת ומעניקה לנו הפסקות בין השיעורים אם אנחנו מתנהגים יפה", votes[1]));
-    teachers.Add("orit", new Teacher("אורית מילר", "https://i.imgur.com/FMYN5zf.jpeg", "אורית היא מורה שמלמדת אזרחות והיסטוריה בחטיבת הביניים. היא מורה מאוד קשוחה אבל הקשיחות עוזרת לחנך את התלמידים ולהכין אותם לעולם הגדול. אורית היא דוקטור להיסטוריה ובעלת הרבה תארים שעליהם היא עושה הרצאות ומלמדת אנשים.", votes[2]));
+    teachers.Add("ליאורה", new Teacher("ליאורה בוגומולניק", "https://i.imgur.com/w5y3Anu.jpeg", "ליאורה מורה שמלדמת מתמטיקה ברמה גבוהה לתלמידי התיכון. היא מורה מאוד מאוד קשוחה באופי ובעלת חדות מטרה ללימודים ופחות צחוקים. ליאורה שונה בשיטות הלימוד שלה משאר המורים אבל השיטות שלה מובילות לאחוז ההצטיינות הגבוה ביותר של תלמידים.", votes[0]));
+    teachers.Add("הדר", new Teacher("הדר בוצר", "https://i.imgur.com/HOvwHhQ.jpeg", "הדר מורה אהובה על כולם. מלמדת את המקצוע היסטוריה. שיטת הלימוד שלה היא מאוד כיפית שמחה ואנרגטית בשונה ממורות אחרות. הדר מאמינה ביחס מורה-תלמיד שאם התלמידים מכבדים אותה היא תחזיר בחזרה ואפילו כפול. הדר מבינה את הקושי של התלמידים בלמידה ממושכת ומעניקה לנו הפסקות בין השיעורים אם אנחנו מתנהגים יפה", votes[1]));
+    teachers.Add("אורית", new Teacher("אורית מילר", "https://i.imgur.com/FMYN5zf.jpeg", "אורית היא מורה שמלמדת אזרחות והיסטוריה בחטיבת הביניים. היא מורה מאוד קשוחה אבל הקשיחות עוזרת לחנך את התלמידים ולהכין אותם לעולם הגדול. אורית היא דוקטור להיסטוריה ובעלת הרבה תארים שעליהם היא עושה הרצאות ומלמדת אנשים.", votes[2]));
+
 
     HttpListener listener = new();
     listener.Prefixes.Add("http://*:5000/");
@@ -88,9 +89,22 @@ class Program
           byte[] teachersBytes = Encoding.UTF8.GetBytes(teachersJson);
           response.OutputStream.Write(teachersBytes);
         }
-        catch {
+        catch
+        {
           Console.WriteLine("Couldn't find teacher in dictonary");
         }
+      }
+      else if (absPath == "/addTeacher")
+      {
+        string teacherjson = GetBody(request);
+        Teacher teacher = JsonSerializer.Deserialize<Teacher>(teacherjson)!; ;
+        teachers.Add(teacher.Name.Split(' ')[0], teacher);
+      }
+      else if (absPath == "/getall")
+      {
+        string allJson = JsonSerializer.Serialize(teachers.Values);
+        byte[] allBytes = Encoding.UTF8.GetBytes(allJson);
+        response.OutputStream.Write(allBytes);
       }
 
       response.Close();
