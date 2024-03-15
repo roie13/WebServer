@@ -1,4 +1,3 @@
-console.log("mashu");
 let container = document.getElementsByClassName("container")[0];
 let score0 = document.getElementsByClassName("score")[0];
 let score1 = document.getElementsByClassName("score")[1];
@@ -15,32 +14,38 @@ let input2 = document.getElementsByTagName("input")[2];
 
 
 function createTeacher(name, src, description, score) {
+    // תבנית
     let teacherDiv = document.createElement("div");
     teacherDiv.classList.add("teacher");
     container.appendChild(teacherDiv);
-
+// קישור
     let a = document.createElement("a");
     teacherDiv.appendChild(a);
-
+// תמונה
     let image = document.createElement("img");
     image.width = 150;
     image.height = 150;
     a.appendChild(image);
-
+// שם
     let nameDiv = document.createElement("div");
     teacherDiv.appendChild(nameDiv);
-
-
+// ניקוד
     let scoreDiv = document.createElement("div");
     teacherDiv.appendChild(scoreDiv);
-
-    let button = document.createElement("button");
-    teacherDiv.appendChild(button);
     
-    nameDiv.innerText = input0.value;
-    image.innerText = input1.value;
-
+// כפתור
+    let button1 = document.createElement("button");
+    button1.innerText = "vote";
+    teacherDiv.appendChild(button1);
+    // שינוי לפי פרמטרים
+    nameDiv.innerText = " - " + input0.value;
+    image.src = input1.value;
+    
+    input0.value = "";
+    input1.value = "";
 }
+
+
 
 async function handleClick1() {
     await fetch("/addVote",
@@ -74,6 +79,7 @@ async function handleClick3() {
     GetVotes();
 }
 
+
 async function handleClick4() {
     let response = await fetch("/getVotes");
     let votes = await response.json();
@@ -101,6 +107,15 @@ async function handleClick4() {
         container.innerText = "";
         New.innerText = "";
     }
+    // ---------------------------------------------------------------------
+    else if (maxScoreIndex === 3) { 
+        finish.innerText = input0.value + " is the most beloved teacher!";
+        img.src = input1.value;
+        img.width = "700";
+        container.innerText = "";
+        New.innerText = "";
+    }
+    // ---------------------------------------------------------------------
 }
 
 async function GetVotes() {

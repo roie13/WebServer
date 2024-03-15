@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>מידע על </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="icon.jpg">
+</head>
+
+
+<body>
+    <img src="" width="200" height="200">
+
+    <h1></h1>
+    <div class="description">
+        <!-- description -->
+        <a href="index.html">back</a>
+    </div>
+
+    <script>
+        let title1 = document.getElementsByTagName("title");
+        let image1 = document.getElementsByTagName("img");
+        let h1 = document.getElementsByTagName("h1");
+        let descrip = document.getElementsByClassName("description")[0];
+
+        let query = new URLSearchParams(window.location.search);
+
+        async function getTeacher() {
+            let response = await fetch("/getTeacher?teacher=" + query.get("teacher"));
+            let teacherData = await response.json();
+        }
+
+        getTeacher();
+    </script>
+</body>
+
+
+</html>
