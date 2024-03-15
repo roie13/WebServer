@@ -13,22 +13,39 @@
     <img src="" width="200" height="200">
 
     <h1></h1>
-    <div class="description">
-        <!-- description -->
-        <a href="index.html">back</a>
+    <div class="flex">
+        <div class="description">
+            <!-- description -->
+        </div>
     </div>
+    <br>
+    <a href="index.html">back</a>
 
     <script>
         let title1 = document.getElementsByTagName("title");
-        let image1 = document.getElementsByTagName("img");
-        let h1 = document.getElementsByTagName("h1");
+        let image1 = document.getElementsByTagName("img")[0];
+        let h1 = document.getElementsByTagName("h1")[0];
         let descrip = document.getElementsByClassName("description")[0];
 
         let query = new URLSearchParams(window.location.search);
 
         async function getTeacher() {
             let response = await fetch("/getTeacher?teacher=" + query.get("teacher"));
+
+            /**
+             * @type {{
+             *  Description: string,
+             *  Image: string,
+             *  Name: string,
+             * }}
+            */
             let teacherData = await response.json();
+            console.log(teacherData);
+
+            image1.src = teacherData.Image;
+            h1.innerText = teacherData.Name;
+            descrip.innerText = teacherData.Description;
+
         }
 
         getTeacher();

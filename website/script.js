@@ -12,6 +12,15 @@ let input0 = document.getElementsByTagName("input")[0];
 let input1 = document.getElementsByTagName("input")[1];
 let input2 = document.getElementsByTagName("input")[2];
 
+function handleAdd() {
+    let teacher = {
+        Name: input0.value,
+        Image: input1.value,
+        description: input2.value,
+        score: 0
+    };
+    createTeacher(input0.value, input1.value, input2.value, 0);
+}
 
 function createTeacher(name, src, description, score) {
     // תבנית
@@ -20,6 +29,7 @@ function createTeacher(name, src, description, score) {
     container.appendChild(teacherDiv);
 // קישור
     let a = document.createElement("a");
+    a.href = "teacherPage.html?teacher=" + name;
     teacherDiv.appendChild(a);
 // תמונה
     let image = document.createElement("img");
@@ -40,9 +50,12 @@ function createTeacher(name, src, description, score) {
     // שינוי לפי פרמטרים
     nameDiv.innerText = " - " + input0.value;
     image.src = input1.value;
+
+
     
     input0.value = "";
     input1.value = "";
+    input2.value = "";
 }
 
 
