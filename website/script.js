@@ -12,6 +12,23 @@ let input0 = document.getElementsByTagName("input")[0];
 let input1 = document.getElementsByTagName("input")[1];
 let input2 = document.getElementsByTagName("input")[2];
 
+async function updateTeacherScore(teacherId) {
+    try {
+      const response = await fetch('/addPointsVote', {
+        method: 'POST',
+        body: teacherId.toString()
+      });
+  
+      if (response.ok) {
+        console.log(`Teacher score updated for teacher with ID ${teacherId}`);
+      } else {
+        console.error(`Failed to update teacher score for teacher with ID ${teacherId}`);
+      }
+    } catch (error) {
+      console.error(`Error updating teacher score: ${error}`);
+    }
+  }
+  
 async function handleAdd() {
     let teacher = {
         Name: input0.value,
@@ -46,108 +63,48 @@ async function getAll(){
 
 
 function createTeacher(name, src, description, score) {
+    let firstName = name.split(" ")[0];
+
     // תבנית
     let teacherDiv = document.createElement("div");
     teacherDiv.classList.add("teacher");
     container.appendChild(teacherDiv);
 // קישור
     let a = document.createElement("a");
-    a.href = "teacherPage.html?teacher=" + name.split(" ")[0];
+    a.href = "teacherPage.html?teacher=" + firstName;
     teacherDiv.appendChild(a);
 // תמונה
     let image = document.createElement("img");
     image.width = 150;
     image.height = 150;
     a.appendChild(image);
+    image.src = src;
 // שם
     let nameDiv = document.createElement("div");
     teacherDiv.appendChild(nameDiv);
+    nameDiv.innerText =  name + " - ";
 // ניקוד
     let scoreDiv = document.createElement("div");
     teacherDiv.appendChild(scoreDiv);
+    scoreDiv.innerText = score;
     
 // כפתור
     let button1 = document.createElement("button");
     button1.innerText = "vote";
+    button1.onclick = ()=>vote(firstName);
     teacherDiv.appendChild(button1);
-    // שינוי לפי פרמטרים
-    nameDiv.innerText = name;
-    image.src = src;
 
 }
 
+async function vote(firstName) {
+    await fetch("/addVote", {
+        method: "POST",
+        body: firstName,
+    });
 
-
-async function handleClick1() {
-    await fetch("/addVote",
-        {
-            method: "POST",
-            body: 2
-        }
-    );
-
-    GetVotes();
-}
-async function handleClick2() {
-    await fetch("/addVote",
-        {
-            method: "POST",
-            body: 1
-        }
-    );
-
-    GetVotes();
-}
-async function handleClick3() {
-
-    await fetch("/addVote",
-        {
-            method: "POST",
-            body: 0
-        }
-    );
-
-    GetVotes();
+    getAll();
 }
 
-
-async function handleClick4() {
-    let response = await fetch("/getVotes");
-    let votes = await response.json();
-    score0.innerText = votes[2];
-    score1.innerText = votes[1];
-    score2.innerText = votes[0];
-
-
-    if (score0.innerText > score1.innerText && score0.innerText > score2.innerText) {
-        finish.innerText = "!Orit Miller the most beloved teacher"
-        img.src = "../oritketer.jpg"; img.width = "700";
-        container.innerText = "";
-        New.innerText = "";
-
-    }
-    if (score1.innerText > score0.innerText && score1.innerText > score2.innerText) {
-        finish.innerText = "!Hadar bocher the most beloved teacher"
-        img.src = "../hadarketer.jpg"; img.width = "700";
-        container.innerText = "";
-        New.innerText = "";
-    }
-    if (score2.innerText > score0.innerText && score2.innerText > score1.innerText) {
-        finish.innerText = "!Liora bogomolnik the most beloved teacher"
-        img.src = "../lioraketer.jpg"; img.width = "700";
-        container.innerText = "";
-        New.innerText = "";
-    }
-    // ---------------------------------------------------------------------
-    else if (maxScoreIndex === 3) { 
-        finish.innerText = input0.value + " is the most beloved teacher!";
-        img.src = input1.value;
-        img.width = "700";
-        container.innerText = "";
-        New.innerText = "";
-    }
-    // ---------------------------------------------------------------------
-}
 
 async function GetVotes() {
     let response = await fetch("/getVotes");

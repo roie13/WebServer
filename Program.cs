@@ -11,11 +11,19 @@ class Program
 {
   public static void Main()
   {
-    int[] votes = [0, 0, 0];
     Dictionary<string, Teacher> teachers = new Dictionary<string, Teacher>();
-    teachers.Add("ליאורה", new Teacher("ליאורה בוגומולניק", "https://i.imgur.com/w5y3Anu.jpeg", "ליאורה מורה שמלדמת מתמטיקה ברמה גבוהה לתלמידי התיכון. היא מורה מאוד מאוד קשוחה באופי ובעלת חדות מטרה ללימודים ופחות צחוקים. ליאורה שונה בשיטות הלימוד שלה משאר המורים אבל השיטות שלה מובילות לאחוז ההצטיינות הגבוה ביותר של תלמידים.", votes[0]));
-    teachers.Add("הדר", new Teacher("הדר בוצר", "https://i.imgur.com/HOvwHhQ.jpeg", "הדר מורה אהובה על כולם. מלמדת את המקצוע היסטוריה. שיטת הלימוד שלה היא מאוד כיפית שמחה ואנרגטית בשונה ממורות אחרות. הדר מאמינה ביחס מורה-תלמיד שאם התלמידים מכבדים אותה היא תחזיר בחזרה ואפילו כפול. הדר מבינה את הקושי של התלמידים בלמידה ממושכת ומעניקה לנו הפסקות בין השיעורים אם אנחנו מתנהגים יפה", votes[1]));
-    teachers.Add("אורית", new Teacher("אורית מילר", "https://i.imgur.com/FMYN5zf.jpeg", "אורית היא מורה שמלמדת אזרחות והיסטוריה בחטיבת הביניים. היא מורה מאוד קשוחה אבל הקשיחות עוזרת לחנך את התלמידים ולהכין אותם לעולם הגדול. אורית היא דוקטור להיסטוריה ובעלת הרבה תארים שעליהם היא עושה הרצאות ומלמדת אנשים.", votes[2]));
+    teachers.Add("ליאורה", new Teacher(
+      "ליאורה בוגומולניק",
+      "https://i.imgur.com/w5y3Anu.jpeg",
+      "ליאורה מורה שמלדמת מתמטיקה ברמה גבוהה לתלמידי התיכון. היא מורה מאוד מאוד קשוחה באופי ובעלת חדות מטרה ללימודים ופחות צחוקים. ליאורה שונה בשיטות הלימוד שלה משאר המורים אבל השיטות שלה מובילות לאחוז ההצטיינות הגבוה ביותר של תלמידים."
+    ));
+    teachers.Add("הדר", new Teacher(
+      "הדר בוצר", "https://i.imgur.com/HOvwHhQ.jpeg",
+       "הדר מורה אהובה על כולם. מלמדת את המקצוע היסטוריה. שיטת הלימוד שלה היא מאוד כיפית שמחה ואנרגטית בשונה ממורות אחרות. הדר מאמינה ביחס מורה-תלמיד שאם התלמידים מכבדים אותה היא תחזיר בחזרה ואפילו כפול. הדר מבינה את הקושי של התלמידים בלמידה ממושכת ומעניקה לנו הפסקות בין השיעורים אם אנחנו מתנהגים יפה"
+    ));
+    teachers.Add("אורית", new Teacher("אורית מילר",
+     "https://i.imgur.com/FMYN5zf.jpeg", "אורית היא מורה שמלמדת אזרחות והיסטוריה בחטיבת הביניים. היא מורה מאוד קשוחה אבל הקשיחות עוזרת לחנך את התלמידים ולהכין אותם לעולם הגדול. אורית היא דוקטור להיסטוריה ובעלת הרבה תארים שעליהם היא עושה הרצאות ומלמדת אנשים."
+    ));
 
 
     HttpListener listener = new();
@@ -52,39 +60,18 @@ class Program
       }
       else if (absPath == "/addVote")
       {
-        int voteIndex = int.Parse(GetBody(request));
-        votes[voteIndex]++;
-        Console.WriteLine(votes[voteIndex]);
-      }
-      else if (absPath == "/getVotes")
-      {
-        string votesJson = JsonSerializer.Serialize(votes);
-        byte[] votesBytes = Encoding.UTF8.GetBytes(votesJson);
-        response.OutputStream.Write(votesBytes);
-      }
-      else if (absPath == "/addPointsVote")
-      {
-        int voteIndex = int.Parse(GetBody(request));
-        votes[voteIndex]++;
-        Console.WriteLine(votes[voteIndex]);
-      }
-      else if (absPath == "/getPointsVotes")
-      {
-        string votesJson = JsonSerializer.Serialize(votes);
-        byte[] votesBytes = Encoding.UTF8.GetBytes(votesJson);
-        response.OutputStream.Write(votesBytes);
+        string teacherName = GetBody(request);
+        teachers[teacherName].Score++;
       }
       else if (absPath == "/getTeacher")
       {
         try
         {
           string query = request.Url.Query;
-          Console.WriteLine(query);
           var parsed = HttpUtility.ParseQueryString(query);
           string teacherName = parsed["teacher"]!;
 
           Teacher teacher = teachers[teacherName];
-
           string teachersJson = JsonSerializer.Serialize(teacher);
           byte[] teachersBytes = Encoding.UTF8.GetBytes(teachersJson);
           response.OutputStream.Write(teachersBytes);
@@ -116,11 +103,11 @@ class Program
   }
 }
 
-class Teacher(string name, string image, string description, int score)
+class Teacher(string name, string image, string description)
 {
   public string Name { get; set; } = name;
   public string Image { get; set; } = image;
   public string Description { get; set; } = description;
-  public int Score { get; set; } = score;
+  public int Score { get; set; } = 0;
 
 }
