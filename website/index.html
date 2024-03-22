@@ -16,16 +16,24 @@
 
   <div class="container">
 
-    
+
   </div>
 
-  <button style="font-size: 25px; background-color: darkcyan; color: black;" onclick="handleClick4()">finish</button>
+  <button id="myBtn" style="font-size: 25px; background-color: darkcyan; color: black;"
+    onclick="finishclick()">finish</button>
   <br />
   <div class="finish"></div>
   <br />
-  <div class="img1">
-    <img src="" />
+
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="sentence" style="font-size: 40px;"></div>
+      <img class="img0" src="" />
+    </div>
   </div>
+
   <div class="New">
     <h3>New teacher</h3>
     Name: <input type="text" style="direction: ltr;">
