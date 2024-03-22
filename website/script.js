@@ -117,5 +117,11 @@ function handleClick6() {
     div18 = input0.value;
 }
 
+function finifhclick(){
+let finishsentence = document.getElementsByClassName("finish")[0];
+finishsentence =  + "is the most belover teacher"
+
+}
+
 GetVotes();
 getAll();
