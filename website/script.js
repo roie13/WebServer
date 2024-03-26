@@ -12,23 +12,6 @@ let input0 = document.getElementsByTagName("input")[0];
 let input1 = document.getElementsByTagName("input")[1];
 let input2 = document.getElementsByTagName("input")[2];
 
-async function updateTeacherScore(teacherId) {
-    try {
-        const response = await fetch('/addPointsVote', {
-            method: 'POST',
-            body: teacherId.toString()
-        });
-
-        if (response.ok) {
-            console.log(`Teacher score updated for teacher with ID ${teacherId}`);
-        } else {
-            console.error(`Failed to update teacher score for teacher with ID ${teacherId}`);
-        }
-    } catch (error) {
-        console.error(`Error updating teacher score: ${error}`);
-    }
-}
-
 async function handleAdd() {
     let teacher = {
         Name: input0.value,
