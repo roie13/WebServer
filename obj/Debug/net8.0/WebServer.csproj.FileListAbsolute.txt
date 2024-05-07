@@ -13,3 +13,18 @@ C:\Users\roeim\OneDrive\שולחן העבודה\WebServer\obj\Debug\net8.0\WebSe
 C:\Users\roeim\OneDrive\שולחן העבודה\WebServer\obj\Debug\net8.0\WebServer.genruntimeconfig.cache
 C:\Users\roeim\OneDrive\שולחן העבודה\WebServer\obj\Debug\net8.0\ref\WebServer.dll
 C:\Users\roeim\OneDrive\שולחן העבודה\WebServer\obj\Debug\net8.0\WebServer.sourcelink.json
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\bin\Debug\net8.0\WebServer.exe
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\bin\Debug\net8.0\WebServer.deps.json
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\bin\Debug\net8.0\WebServer.runtimeconfig.json
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\bin\Debug\net8.0\WebServer.dll
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\bin\Debug\net8.0\WebServer.pdb
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.AssemblyInfoInputs.cache
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.AssemblyInfo.cs
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.csproj.CoreCompileInputs.cache
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.sourcelink.json
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.dll
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\refint\WebServer.dll
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.pdb
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\WebServer.genruntimeconfig.cache
+C:\Users\roeim\OneDrive\שולחן העבודה\הנדסת תוכנה\WebServerClassWork\obj\Debug\net8.0\ref\WebServer.dll
